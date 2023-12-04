@@ -1,17 +1,26 @@
 using Controle_Escolar.Data;
+using Controle_Escolar.Repository.Prof;
 using Microsoft.EntityFrameworkCore;
+using Controle_Escolar.Repository;
+using Controle_Escolar.Repository.Turma;
+using Controle_Escolar.Repository.Atividade;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
-
 builder.Services.AddControllers();
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultDatabase");
 builder.Services.AddDbContext<BancoContext>(opt => {opt.UseMySql(mySqlConnection,ServerVersion.AutoDetect(mySqlConnection));
 });
+
+builder.Services.AddScoped<IProfRepository,ProfRepository>();
+builder.Services.AddScoped<ITurmaRepository,TurmaRepository>();
+builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
+
+var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
