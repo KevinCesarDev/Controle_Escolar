@@ -1,10 +1,13 @@
-using Controle_Escolar.Data;
-using Controle_Escolar.Repository.Prof;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Controle_Escolar.Repository;
-using Controle_Escolar.Repository.Turma;
-using Controle_Escolar.Repository.Atividade;
-
+using Programa.Data;
+using Programa.Repository.Atividade;
+using Programa.Repository.Conta;
+using Programa.Repository.Nota;
+using Programa.Repository.Prof;
+using Programa.Repository.Turma;
+using Programa_DS2.Repository.Diciplina;
+using Programa_DS2.Repository.Emenda;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +16,29 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllers();
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultDatabase");
-builder.Services.AddDbContext<BancoContext>(opt => {opt.UseMySql(mySqlConnection,ServerVersion.AutoDetect(mySqlConnection));
+
+builder.Services.AddDbContext<DataContex>(opt => {
+    opt.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection));
 });
 
-builder.Services.AddScoped<IProfRepository,ProfRepository>();
-builder.Services.AddScoped<ITurmaRepository,TurmaRepository>();
 builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
+builder.Services.AddScoped<IContaRepository, ContaRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITurmaRepository,TurmaRepository>();
+builder.Services.AddScoped<IDisciplinaRepository, DisciplinaRepository>();
+builder.Services.AddScoped<IEmentaRepository, EmentaRepository>();
+builder.Services.AddScoped<INotaRepository,NotaRepository>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    
+});
+
 
 var app = builder.Build();
 

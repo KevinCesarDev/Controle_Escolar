@@ -2,17 +2,21 @@
     ViewData["Title"] = "Login";
 }
 
-<div class="text-center d-flex flex-column jusfy-content-center align-items-center">
-    <h1 class="display-4">Bem-Vindo !</h1>
-    <div class="w-10 mt-5">
-        <div>
-            <label class="form-label" for="loginProf">Login</label>
-            <input type="text" class="form-control" id="loginProf">
-        </div>
-        <div class="mt-1">
-            <label for="senhaProf" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="senhaProf">
-        </div>
-        <button type="submit" class="btn btn-success mt-5">Acessar</button>
-    </div>
+<div class="text-center">
+    <form class="border border-black d-flex justify-content-center flex-column align-items-center " style="margin-left:300px; margin-right: 300px;" asp-action="Validar" asp-controller="Home">
+
+        <h1 class="display-4">Bem Vindo</h1>
+        <input type="text" class="mb-3 text-center form-control w-50" name="login" placeholder="Login">
+        <input type="password" class="mb-3 text-center form-control w-50" name="senha" placeholder="Senha">
+       
+        @if (ViewBag.Erro != null)
+        {
+            <div class="alert alert-danger">
+            @ViewBag.Erro
+            </div>
+        }
+        
+        <button type="submit" class="mb-3 btn btn-primary w-50">Entrar</button>        
+    </form>
+    <a role="button" asp-action="CadastroUsuario" asp-controller="Home" class=" mt-3 mb-3 btn btn-secondary">Cadastro</a>      
 </div>

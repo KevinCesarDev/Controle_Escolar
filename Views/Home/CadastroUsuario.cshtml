@@ -1,0 +1,59 @@
+@model DTOModel
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<div class="text-center">
+    <form class="border border-black d-flex justify-content-center flex-column align-items-center "
+        style="margin-left:300px; margin-right: 300px;" asp-action="CadastroUsuario" asp-controller="Home">
+
+        <h1 class="display-4">Nova Conta</h1>
+        <div class="d-flex">
+            <label class="form-label w-50">Seu Login: </label>
+            <input type="text" class="mb-3 text-center form-control" name="login" placeholder="Login">
+        </div>
+        <div class="d-flex">
+            <label class="form-label w-50">Seu Nome: </label>
+            <input type="text" class="mb-3 form-control text-center" name="nome" placeholder="Nome">
+        </div>
+        <div class="d-flex">
+            <label class="form-label w-50">Sua Senha:</label>
+            <input type="password" class="mb-3 text-center form-control" name="senha" placeholder="Senha">
+        </div>
+
+        <div class="d-flex">
+            <label class="form-label me-3">Tipo de Conta: </label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name=tipoConta value="Professor" id=contaProf
+                    onchange="mostrarTurma()">
+                <label for="contaProf" class="form-check-label">Professor</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoConta" value="Aluno" id="contaAluno"
+                    onchange="mostrarTurma()">
+                <label for="contaAluno" class="ms-3 form-check-label">Aluno</label>
+            </div>
+        </div>
+        <div class="d-none d-flex mb-3" id="divTurma">
+            <label class="form-label me-2 " style="white-space: nowrap;">Sua Turma:</label>
+            <select type="number" class="text-center form-select" name="idTurma" placeholder="Turma">
+                @foreach (var item in @Model.Turmas)
+                {
+                    <option value="@item.Id">Nº Turma: @item.Id - @item.NomeTurma</option>
+                }
+            </select>
+        </div>
+
+
+        @if (ViewBag.Erro != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Erro
+            </div>
+        }
+
+        <div class="d-flex w-50 justify-content-center"><button type="submit"
+                class="mb-3 btn btn-success w-100">Cadastrar</button> </div>
+    </form>
+
+</div>

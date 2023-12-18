@@ -1,0 +1,101 @@
+@model DTOModel
+@{
+    ViewData["Title"] = "Cadastro Turma";
+}
+
+<div class="d-flex justify-content-between">
+    <div class="d-flex">
+        <p>Usuário Autenticado:
+        <p class="ms-2">@Model.Usuario.Nome</p>
+        </p>
+    </div>
+    <div class="d-flex justify-content-between">
+        @if (@Model.Usuario.IdConta != 3)
+        {
+            <a role="button" class="btn btn-primary me-5" asp-action="Index" asp-controller="Perfil">Home</a>
+        }
+        <a role="button" class="btn btn-secondary" asp-action="Index" asp-controller="Home">Sair</a>
+    </div>
+</div>
+
+@if (@Model.Usuario.IdConta == 1)
+{
+    <div class="d-flex justify-content-end mt-3"><a role="button" class="btn btn-success" asp-action="DisciplinaTurma"
+            asp-controller="Turma" asp-route-idProf="@Model.Usuario.Id" asp-route-idTurma="@Model.Turma.Id">Incluir
+            Disciplina</a></div>
+}
+
+<caption>
+    <h1>Curso: @Model.Turma.NomeTurma - Turma: Nº @Model.Turma.Id</h1>
+</caption>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Disciplina</th>
+            <th scope="col">Professor</th>
+            <th scope="col">Atividades</th>
+            <td></td>
+            @if (@Model.Usuario.IdConta == 3)
+            {
+                <th scope="col">Nota</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item1 in @Model.Ementas)
+        {
+            <tr>
+                <td>@foreach (var item2 in @Model.Disciplinas)
+                    {
+                        if (item1.IdDisciplina == item2.Id)
+                        {
+                            @item2.Disciplina
+                            ;
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item2 in @Model.Usuarios)
+                    {
+                        if (item1.IdProf == item2.Id)
+                        {
+                            @item2.Nome
+                            ;
+                            break;
+                        }
+                    }
+
+                </td>
+                <td>
+                    @foreach (var item2 in @Model.Atividades)
+                    {
+                        if (item1.Id == item2.IdEmenda)
+                        {
+                            <a role="button" class="btn btn-warning">@item2.NomeAtividade</a>
+                        }
+                    }
+
+                </td>
+                <td>
+                    <div class="">
+                        <a role="button" asp-action="AtvTurma" asp-controller="Turma" class="btn btn-primary"
+                            asp-route-idEmenda="@item1.Id">Detalhar Atividades</a>
+                    </div>
+                </td>
+                @if (@Model.Usuario.IdConta == 3)
+                {<td>
+                    @foreach(var item in @Model.Notas){
+                        
+                            @if(item.IdEmenta == item1.Id){
+                            <input type="number" class="form-control w-50" placeholder="@item.Nota" readonly>
+                            }
+                        
+                    }</td>
+                }
+            </tr>
+
+        }
+    </tbody>
+</table>
+</div>

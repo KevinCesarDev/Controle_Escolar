@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Controle_Escolar.Models
+namespace Programa.Models
 {
     public class TurmaModel
     {
-        public int Id { get; set; }
-        public ProfModel Professor { get; set; }
-        public List<AtividadeModel> ListaAtv { get; set; }
+        public int Id {get;set;}
+        public string NomeTurma { get; set; }
     }
 }

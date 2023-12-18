@@ -1,0 +1,29 @@
+@model UsuarioModel
+@{
+  ViewData["Title"] = "Cadastro Turma";
+}
+<div class="d-flex justify-content-between">
+  <div class="d-flex">
+    <p>Professor Autenticado:
+    <p class="ms-2">@Model.Nome</p>
+    </p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <a role="button" class="btn btn-primary me-5" asp-action="Index" asp-controller="Perfil"
+      asp-route-idProf="@Model.Id">Home</a>
+    <a role="button" class="btn btn-secondary" asp-action="Index" asp-controller="Home">Sair</a>
+  </div>
+</div>
+
+<div class="mb-3">
+  <form method="post" asp-action="ValidarTurma" asp-controller="Perfil">
+        <h1>Criar uma nova Turma</h1>
+        <label for="nomeTurma" class="form-label">Nome do Curso:</label>
+        <input type="text" class="form-control" id="nomeTurma" name="nomeTurma">
+        <div class="d-flex justify-content-end mt-3">
+    <div class="d-flex justify-content-center w-100">
+      <button type="submit" class="btn btn-success mx-2" name="criarTurma" value="SIM">Cadastrar</button>
+      <button type="submit" class="btn btn-danger mx-2" name="criarTurma" value="NAO">Cancelar</button>
+    </div>
+  </form>
+</div>

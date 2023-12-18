@@ -1,0 +1,36 @@
+@model DTOModel
+@{
+  ViewData["Title"] = "Atividade";
+}
+
+<div class="d-flex justify-content-between">
+  <div class="d-flex">
+    <p>Usuário Autenticado:
+    <p class="ms-2">@Model.Usuario.Nome</p>
+    </p>
+  </div>
+  <div class="d-flex justify-content-between">
+    <a role="button" class="btn btn-primary me-5" asp-action="Index" asp-controller="Perfil"
+      asp-route-idProf="@Model.Usuario.Id">Home</a>
+    <a role="button" class="btn btn-secondary" asp-action="Index" asp-controller="Home">Sair</a>
+  </div>
+</div>
+
+<div class="mb-3">
+
+  <form asp-action="CadDisciplina" asp-controller="Perfil" asp-route-idTurma="@Model.Turma.Id">
+    <label for="nomeDisciplina" class="form-label">Disciplina:</label>
+<select class="form-select" name="idDisciplina">
+      @foreach(var item in @Model.Disciplinas){
+        <option value="@item.Id" >@item.Disciplina</option>
+      }
+    </select>
+    <label for="nomeDiciplina" class="form-label mt-3">Professor:</label>
+    <select class="form-select" name="idProf">
+      @foreach(var item in @Model.Usuarios){
+        <option value="@item.Id" >@item.Nome</option>
+      }
+    </select>
+    <button type="submit" class="btn btn-success w-100 mt-3">Cadastrar</button>
+  </form>
+</div>

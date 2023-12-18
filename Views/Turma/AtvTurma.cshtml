@@ -1,0 +1,53 @@
+@model DTOModel
+@{
+    ViewData["Title"] = "Atividades";
+}
+
+<div>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex">
+            <p>Usuário Autenticado:
+            <p class="ms-2">@Model.Usuario.Nome</p>
+            </p>
+        </div>
+        <div class="d-flex justify-content-between">
+            @if(@Model.Usuario.IdConta !=3){
+                <a role="button" class="btn btn-primary me-5" asp-action="Index" asp-controller="Perfil">Home</a>
+            }else{
+                <a role="button" class="btn btn-primary me-5" asp-action="Index" asp-controller="Turma" asp-route-idTurma="@Model.Usuario.IdTurma">Home</a>
+            }
+            <a role="button" class="btn btn-secondary" asp-action="Index" asp-controller="Home">Sair</a>
+        </div>
+    </div>
+    @if (@Model.Usuario.IdConta == 2)
+    {
+        <div class="d-flex justify-content-end mt-3"><a role="button" type="button" asp-action="CadAtividade"
+                asp-controller="Turma" asp-route-idEmenda="@Model.Ementa.Id" class="btn btn-success">Criar Atividade</a>
+        </div>
+    }
+
+    <caption>
+        <h1>@Model.Turma.NomeTurma - @Model.Disciplina.Disciplina</h1>
+    </caption>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Atividades</th>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model.Atividades)
+            {
+                <tr>
+                    <td>@item.NomeAtividade</td>
+                    <td class="d-flex justify-content-end">@if(@Model.Usuario.IdConta == 2){
+                        <a role="button" class="btn btn-danger me-3"
+                            asp-route-idTurma="@item.Id" asp-action="ExcluirAtividade" asp-controller="Turma"
+                            asp-route-idAtividade="@item.Id">Excluir</a>}<a role="button" class="btn btn-primary">Visualizar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

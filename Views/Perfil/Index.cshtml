@@ -1,0 +1,54 @@
+@model DTOModel
+@{
+  ViewData["Title"] = "Tela Principal";
+}
+
+<div>
+  <div class="d-flex justify-content-between">
+    <div class="d-flex">
+      <p>Usuário Autenticado:
+      <p class="ms-2">@Model.Usuario.Nome</p>
+      </p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <a role="button" class="btn btn-secondary" asp-action="Index" asp-controller="Home">Sair</a>
+    </div>
+  </div>
+  @if (@Model.Usuario.IdConta == 1)
+  {
+    <div class="d-flex justify-content-end mt-3"><a role="button" type="button" asp-action="CadTurma"
+        asp-controller="Perfil" class="btn btn-success">Criar Turma</a><a role="button" type="button"
+        asp-action="CriarDisciplina" asp-controller="Perfil" class="btn btn-success ms-3">Criar Disciplina</a></div>
+  }
+  <caption>
+    <h1>Cursos</h1>
+  </caption>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col"></th>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in @Model.Turmas)
+      {
+        <tr>
+          <th scope="row">@item.Id</th>
+          <td>@item.NomeTurma</td>
+          <td>
+            <a role="button" class="btn btn-primary" asp-action="AlunosMatriculados" asp-controller="Perfil"
+              asp-route-idTurma="@item.Id">Alunos Matriculados</a>
+          </td>
+          <td class="d-flex justify-content-end">@if(@Model.Usuario.IdConta == 1){
+            <a role="button" class="btn btn-danger me-3" asp-route-idTurma="@item.Id"
+              asp-action="ExcluirTurma" asp-controller="Turma">Excluir</a>}<a role="button" class="btn btn-primary"
+              asp-action="Index" asp-controller="Turma" asp-route-idProf="@Model.Usuario.Id"
+              asp-route-idTurma="@item.Id">Visualizar</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

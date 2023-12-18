@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\kevin\\Documents\\GitHub\\Controle_Escolar\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Controle_Escolar.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Controle_Escolar.bundle.scp.css"
+      "Id": "C:\\Users\\kevin\\Documents\\GitHub\\Controle_Escolar\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Programa.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Programa.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\kevin\\Documents\\GitHub\\Controle_Escolar\\wwwroot\\css\\site.css",
@@ -245,20 +245,20 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Controle_Escolar.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Programa.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Controle_Escolar.props",
-      "PackagePath": "build\\Controle_Escolar.props"
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Programa.props",
+      "PackagePath": "build\\Programa.props"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Controle_Escolar.props",
-      "PackagePath": "buildMultiTargeting\\Controle_Escolar.props"
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Programa.props",
+      "PackagePath": "buildMultiTargeting\\Programa.props"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Controle_Escolar.props",
-      "PackagePath": "buildTransitive\\Controle_Escolar.props"
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Programa.props",
+      "PackagePath": "buildTransitive\\Programa.props"
     }
   ],
   "ElementsToRemove": []
